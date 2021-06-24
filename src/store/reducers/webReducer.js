@@ -41,5 +41,5 @@ const extraReducers = builder => builder
 	state.lists = []
 })
 
-const searchReducers = createSlice({ name, initialState, reducers, extraReducers })
-export default searchReducers
+const webReducers = createSlice({ name, initialState, reducers, extraReducers })
+export default webReducers
