@@ -1,27 +1,25 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import React, { useCallback, useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getWebAction } from './store/actions/web-action'
+import webReducer from './store/reducers/webReducer'
 
-import Home from './pages/Home'
-import About from './pages/About'
 
 function App() {
+
+	const dispatch = useDispatch()
+	const { query, isQuering, isEnd, pageCnt, listCnt, lists } = useSelector(state => state)
+
+	const onQuery = useCallback((e) => {
+		dispatch(getWebAction('react'))
+	}, [dispatch])
+
 	return (
-		<BrowserRouter>
-			<header className="header-wrapper">
-				<Link to="/">Home</Link>
-				<Link to="/about">About</Link>
-			</header>
-			<div className="wrapper">
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route path="/about">
-						<About />
-					</Route>
-				</Switch>
+		<div>
+			<div>
+
 			</div>
-		</BrowserRouter>
+			<button onClick={onQuery}>데이터 가져오기</button>
+		</div>
 	);
 }
 

@@ -12,4 +12,5 @@ const genConfig = (query) => {
 	}
 }
 
-export { WEB_URL, CLIP_URL, IMG_URL, BLOG_URL, BOOK_URL, genConfig }
+const init = { WEB_URL, CLIP_URL, IMG_URL, BLOG_URL, BOOK_URL, genConfig }
+export default init
