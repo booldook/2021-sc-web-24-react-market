@@ -5,19 +5,22 @@ const name = 'search'
 const initialState = {
 	isQuering: false,
 	query: '',
-	web: {
-		documents: [],
-		meta: {}
-	},
+	isEnd: false,
+	pageCnt: 0,
+	listCnt: 0,
+	lists: []
 }
 
 const reducers = {
-
+	actQuery(state, { payload }) {
+		state.query = payload
+	}
 }
 
-const extraReducers = {
-
-}
+const extraReducers = builder => builder
+.addCase()
+.addCase()
+.addCase()
 
 const searchReducers = createSlice({ name, initialState, reducers, extraReducers })
 export default searchReducers
