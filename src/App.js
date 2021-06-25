@@ -10,7 +10,7 @@ import { getBookData } from './store/reducers/bookReducer' // 동기액션, cust
 function App() {
 
 	const dispatch = useDispatch()
-	const { query, isQuering, isEnd, pageCnt, listCnt, lists } = useSelector(state => state) // state
+	const { web, img, clip, blog, book } = useSelector(state => state) // state
 
 	const onQueryWeb = useCallback((e) => {
 		dispatch(getWebData('react', 30))
