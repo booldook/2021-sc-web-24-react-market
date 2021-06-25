@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWebAction } from './store/actions/web-action' // 비동기 액션
-import { actQuery, getData } from './store/reducers/webReducer' // 동기액션, custom action
+import { getWebData } from './store/reducers/webReducer' // 동기액션, custom action
 
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
 	const { query, isQuering, isEnd, pageCnt, listCnt, lists } = useSelector(state => state) // state
 
 	const onQuery = useCallback((e) => {
-		dispatch(getData('react', 10, ['web', 'clip', 'img', 'blog', 'book']))
+		dispatch(getWebData('react', 30))
 		// dispatch(getWebAction('react'))
 		// dispatch(actQuery('react'))
 	}, [dispatch])

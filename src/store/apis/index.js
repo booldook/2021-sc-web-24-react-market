@@ -36,9 +36,9 @@ import axios from 'axios'
 import init from '../init'
 
 
-const getSearchApi = async (query, searchEngine) => {
+const getSearchApi = async (payload, searchEngine) => {
 	try {
-		const { data } = await axios(init[searchEngine], init.genConfig(query))
+		const { data } = await axios(init[searchEngine], init.genConfig(payload))
 		return {
 			pageCnt: data.meta.pageable_count,
 			listCnt: data.meta.total_count,
