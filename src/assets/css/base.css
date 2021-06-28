@@ -1,4 +1,7 @@
 /******************** Reset.css ***********************/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500&display=swap');
+
 html, body {line-height: 1;}
 
 html, body, div, span, applet, object, iframe,

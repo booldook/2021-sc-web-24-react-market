@@ -1,5 +1,10 @@
 import { css } from "styled-components"
 
+export const font = {
+	noto: `'Noto Sans KR', sans-serif;`,
+	notoSF: `'Noto Serif KR', serif;`
+}
+
 export const color = {
 	black: '#111',
 	darker: '#333',
