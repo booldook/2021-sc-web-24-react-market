@@ -11,33 +11,19 @@ import Book from './pages/Book'
 
 function App() {
 	return (
-		<BrowserRouter>
-			<div className="wrapper">
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route path="/all">
-						<All />
-					</Route>
-					<Route path="/web">
-						<Web />
-					</Route>
-					<Route path="/img">
-						<Img />
-					</Route>
-					<Route path="/clip">
-						<Clip />
-					</Route>
-					<Route path="/blog">
-						<Blog />
-					</Route>
-					<Route path="/book">
-						<Book />
-					</Route>
-				</Switch>
-			</div>
-		</BrowserRouter>
+		<div className="wrapper">
+			<BrowserRouter>
+					<Switch>
+						<Route exact path="/" component={ Home } />
+						<Route exact path="/all" component={ All } />
+						<Route exact path="/web" component={ Web } />
+						<Route exact path="/img" component={ Img } />
+						<Route exact path="/clip" component={ Clip } />
+						<Route exact path="/blog" component={ Blog } />
+						<Route exact path="/book" component={ Book } />
+					</Switch>
+			</BrowserRouter>
+		</div>
 	);
 }
 
