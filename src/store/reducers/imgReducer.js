@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getImgAction } from '../actions/img-action'
+import { getSearchAction } from '../actions/search-action'
 
 const name = 'img'
+
+const getImgAction = getSearchAction(name)
 
 const initialState = {
 	query: '',

@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getClipAction } from '../actions/clip-action'
+import { getSearchAction } from '../actions/search-action'
 
 const name = 'clip'
+
+const getClipAction = getSearchAction(name)
 
 const initialState = {
 	query: '',

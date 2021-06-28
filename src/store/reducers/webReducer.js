@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getWebAction } from '../actions/web-action'
+import { getSearchAction } from '../actions/search-action'
 
 const name = 'web'
+
+const getWebAction = getSearchAction(name)
 
 const initialState = {
 	query: '',

@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getBookAction } from '../actions/book-action'
+import { getSearchAction } from '../actions/search-action'
 
 const name = 'book'
+
+const getBookAction = getSearchAction(name)
 
 const initialState = {
 	query: '',
