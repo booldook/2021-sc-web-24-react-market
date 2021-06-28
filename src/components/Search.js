@@ -7,6 +7,7 @@ import { getImgData } from '../store/reducers/imgReducer'
 import { getClipData } from '../store/reducers/clipReducer'
 import { getBlogData } from '../store/reducers/blogReducer'
 import { getBookData } from '../store/reducers/bookReducer'
+import { actQuery } from '../store/reducers/queryReducer'
 
 const Form = styled.div`
 	width: 80%;
@@ -46,6 +47,7 @@ const Search = () => {
 		dispatch(getClipData(query, 10))
 		dispatch(getBlogData(query, 10))
 		dispatch(getBookData(query, 10))
+		dispatch(actQuery(query))
 	}, [dispatch, query])
 
 	return (

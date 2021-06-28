@@ -16,7 +16,7 @@ export const color = {
 	lighter: '#ccc',
 	bright: '#eee',
 	white: '#f8f8f8',
-	primary: '#3feee6',
+	primary: '#dc3545',
 	danger: '#fc4445',
 	info: '#55bcc9',
 	success: '#97caef',
