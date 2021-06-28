@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components'
+import { media, size } from './styled';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import Home from './pages/Home'
@@ -9,9 +11,15 @@ import Clip from './pages/Clip'
 import Blog from './pages/Blog'
 import Book from './pages/Book'
 
+const Wrapper = styled.div`
+	max-width: ${ size.lg };
+	padding: 0 1em;
+	margin: auto;
+`
+
 function App() {
 	return (
-		<div className="wrapper">
+		<Wrapper>
 			<BrowserRouter>
 					<Switch>
 						<Route exact path="/" component={ Home } />
@@ -23,7 +31,7 @@ function App() {
 						<Route exact path="/book" component={ Book } />
 					</Switch>
 			</BrowserRouter>
-		</div>
+		</Wrapper>
 	);
 }
 
