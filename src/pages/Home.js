@@ -26,8 +26,8 @@ const Home = () => {
 			<TitleBar />
 			<Search />
 			<NaviBar />
+			<TitleSearch name="website" link="/web" />
 			<ListWrapper>
-				<TitleSearch name="website" link="/web" />
 				<ListWrap>
 				{
 					webList.map(v => <WebList data={ v } key={ uuid() }/>)

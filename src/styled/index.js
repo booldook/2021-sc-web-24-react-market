@@ -2,14 +2,14 @@ import { css } from "styled-components"
 
 export const font = {
 	noto: `'Noto Sans KR', sans-serif;`,
-	notoSF: `'Noto Serif KR', serif;`
+	notoSF: `'Noto Serif KR', serif;`,
 }
 
 export const color = {
 	black: '#111',
 	darker: '#333',
 	dark: '#555',
-	greay: '#777',
+	grey: '#777',
 	gray: '#777',
 	default: '#999',
 	light: '#aaa',

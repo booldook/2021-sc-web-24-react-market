@@ -1,28 +1,22 @@
 import React from 'react';
 import styled from 'styled-components'
-import { color, media, font } from '../styled'
+import parse from 'html-react-parser'
+import { color, font } from '../../styled'
 
-const List = styled.div`
 
-`
-const Title = styled.h3`
-
-`
-const Content = styled.p`
-
-`
-const Time = styled.div`
-
+const My = styled.div`
+	color: ${ props => props.color !== '' ? props.color : color.darker };
+	&:hover {
+		color: ${ props => props.hoverColor !== '' ? props.hoverColor : props.color }
+	}
+	font-size: ${ props => props.size };
+	font-weight: 300;
 `
 
-const WebList = () => {
+const Content = ({ value, size='1em', color='', hoverColor='' }) => {
 	return (
-		<List>
-			<Title></Title>
-			<Content></Content>
-			<Time></Time>
-		</List>
+		<My color={ color } size={ size } hoverColor={ hoverColor }>{ parse(value) }</My>
 	);
 }
 
-export default WebList;
+export default Content;

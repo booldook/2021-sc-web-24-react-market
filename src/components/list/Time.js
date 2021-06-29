@@ -1,28 +1,19 @@
 import React from 'react';
 import styled from 'styled-components'
-import { color, media, font } from '../styled'
+import moment from 'moment'
+import { color } from '../../styled'
 
-const List = styled.div`
 
-`
-const Title = styled.h3`
-
-`
-const Content = styled.p`
-
-`
-const Time = styled.div`
-
+const My = styled.div`
+	color: ${ props => props.color !== '' ? props.color : color.darker };
+	font-size: ${ props => props.size };
+	font-weight: 300;
 `
 
-const WebList = () => {
+const Time = ({ value, size='1em', color='' }) => {
 	return (
-		<List>
-			<Title></Title>
-			<Content></Content>
-			<Time></Time>
-		</List>
+		<My color={ color } size={ size }>{ moment(value).format('YYYY-MM-DD HH:mm:ss') }</My>
 	);
 }
 
-export default WebList;
+export default Time;
