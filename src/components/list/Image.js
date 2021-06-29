@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { color, media, font } from '../styled'
+import parse from 'html-react-parser'
+import { color, font } from '../../styled'
 
-const List = styled.div`
 
+const My = styled.div`
+	cursor: pointer;
+	overflow: hidden;
+	img {
+		transition: all .35s;
+	}
+	&:hover {
+		img {
+			transform: scale(1.1);
+			opacity: .875;
+		}
+	}
 `
-const Title = styled.h3`
 
-`
-const Content = styled.p`
+const Content = ({ src, thumb }) => {
 
-`
-const Time = styled.div`
+	const onClick = useCallback(e => {
+		// 모달오픈
+		// store의 modal: { isModal: true, src: src }
+	}, [])
 
-`
-
-const WebList = () => {
 	return (
-		<List>
-			<Title></Title>
-			<Content></Content>
-			<Time></Time>
-		</List>
+		<My>
+			<img src={ thumb } alt={ src } className="w-100" onClick={ onClick } />
+		</My>
 	);
 }
 
-export default WebList;
+export default Content
