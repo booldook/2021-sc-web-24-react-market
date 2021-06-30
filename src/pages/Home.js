@@ -13,6 +13,7 @@ import WebList from '../components/WebList'
 import ImgList from '../components/ImgList'
 import ClipList from '../components/ClipList'
 import BlogList from '../components/BlogList'
+import BookList from '../components/BookList'
 
 const ListWrapper = styled.div`
 	margin: 1em 0;
@@ -25,6 +26,10 @@ const ImgWrapper = styled(ListWrapper)`
 `
 const ClipWrapper = styled(ListWrapper)``
 const BlogWrapper = styled(ListWrapper)``
+const BookWrapper = styled(ListWrapper)`
+	display: flex;
+	flex-wrap: wrap;
+`
 
 
 const Home = () => {
@@ -33,6 +38,7 @@ const Home = () => {
 	const imgList = useSelector(state => state.img.lists)
 	const clipList = useSelector(state => state.clip.lists)
 	const blogList = useSelector(state => state.blog.lists)
+	const bookList = useSelector(state => state.book.lists)
 
 	return (
 		<div>
@@ -59,6 +65,9 @@ const Home = () => {
 							{ blogList.map(v => <BlogList data={ v } key={ uuid() }/>) }
 						</BlogWrapper>
 						<TitleSearch name="Book" link="/book" />
+						<BookWrapper>
+							{ bookList.map(v => <BookList data={ v } key={ uuid() }/>) }
+						</BookWrapper>
 					</div> 
 				: ''
 			}
