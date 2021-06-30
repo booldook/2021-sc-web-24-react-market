@@ -17,9 +17,9 @@ export const color = {
 	bright: '#eee',
 	white: '#f8f8f8',
 	primary: '#dc3545',
-	danger: '#fc4445',
-	info: '#55bcc9',
-	success: '#97caef',
+	danger: '#fc444',
+	info: '#1b4ca7',
+	success: '#822eb2',
 	warning: '#cafafe',
 }
 

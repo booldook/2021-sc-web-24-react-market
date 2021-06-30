@@ -5,6 +5,7 @@ import { color, media, font } from '../styled'
 import Title from './list/Title'
 import Time from './list/Time'
 import Image from './list/Image'
+import Content from './list/Content'
 
 const List = styled.div`
 	display: flex;
@@ -19,49 +20,58 @@ const Imgs = styled.div`
 	border: 1px solid ${ color.primary };
 	flex-shrink: 0;
 `
-const Titles = styled.a`
+const ContentWrap = styled.div`
 	margin-bottom: .75em;
 	flex-grow: 1;
 	padding-left: 1em;
 	color: ${ color.dark };
+`
+
+const Titles = styled.a`
+	margin-bottom: .5em;
 	font-size: 1.25em;
 	@media ${ media.sm } {
 		font-size: 1em;
 	}
 `
-const Author = styled.span``
+const Author = styled.span`
+	color: ${ color.info };
+`
 const Bar = styled.span`
 	padding: 0 .25em;
 `
 const Url = styled.a`
 	color: ${ color.grey };
-	display: block;
 	&:hover {
 		color: ${ color.primary };
 	}
 `
-const Duration = styled.span`
-
+const Contents = styled.div`
+	margin-bottom: .75em;
+	font-size: 1rem;
+	line-height: 1.25em;
 `
 
-const zeroPlus = n => n < 10 ? '0'+n : n
-
-const ImgList = ({ data }) => {
+const BlogList = ({ data }) => {
 	return (
 		<List>
 			<Imgs>
-				<Image src={ data.url } thumb={ data.thumbnail } />
+				<Image thumb={ data.thumbnail } src={ data.url } />
 			</Imgs>
-			<Titles href={ data.doc_url } target="_blank">
-				<Title value={ data.title } color={ color.primary } />
-				<Author>{ data.author }</Author>
+			<ContentWrap>
+				<Titles href={ data.url } target="_blank">
+					<Title value={ data.title } color={ color.primary } />
+				</Titles>
+				<Contents>
+					<Content color={ color.dark } hoverColor={ color.darker } value={ data.contents } />
+				</Contents>
+				<Author>{ data.blogname }</Author>
 				<Bar>|</Bar>
-				<Duration>{ zeroPlus(Math.floor(data.play_time/60)) }:{ zeroPlus(data.play_time%60) }</Duration>
 				<Url href={ data.url } target="_blank">{ data.url }</Url>
 				<Time color={ color.grey } value={ data.datetime } size="0.875em" />
-			</Titles>
+			</ContentWrap>
 		</List>
 	);
 }
 
-export default ImgList;
+export default BlogList;
