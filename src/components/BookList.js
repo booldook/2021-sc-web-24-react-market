@@ -50,7 +50,7 @@ const Titles = styled.a`
 	margin-bottom: .5em;
 	font-size: 1.25em;
 	@media ${ media.sm } {
-		font-size: 1em;
+		font-size: 1.125em;
 	}
 `
 const Author = styled.div`
@@ -67,10 +67,20 @@ const Publisher = styled.div`
 `
 const Information = styled.div`
 	display: flex;
+	align-items: flex-start;
 	margin-bottom: .75em;
 	font-size: 1rem;
 	line-height: 1.25em;
 `
+const Isbn = styled.div`
+	color: ${ color.default };
+	margin-bottom: .5em;
+`
+const Status = styled.span`
+	padding-left: .75em;
+`
+
+const noImg = '//via.placeholder.com/120x174/DC3545/FFFFFF?text=no+Image'
 
 const BookList = ({ data }) => {
 	
@@ -81,17 +91,18 @@ const BookList = ({ data }) => {
 			</Titles>
 			<Information>
 				<Imgs>
-					<Image thumb={ data.thumbnail } src={ data.url } />
+					<Image thumb={ data.thumbnail !== '' ? data.thumbnail : noImg  } src={ data.url } />
 				</Imgs>
 				<ContentWrap>
 					<Author>{ data.authors.join(', ') }</Author>
 					<PriceWrap>
 						{ data.price > 0 ? <Price value={ data.price } color={ color.grey } del={ true } /> : '' } 
-						{ data.price > 0 ? ' | ' : '' }
-						<Price value={ data.sale_price } size="1.125em" color="#03f" />
-						&nbsp;[{ data.status }]
+						{ data.price > 0 && data.sale_price !== -1 ? ' | ' : '' }
+						{ data.sale_price !== -1 ? <Price value={ data.sale_price } size="1.125em" color="#03f" /> : '' }
+						{ <Status>[{ data.status !== '' ? data.status : '판매중단' }]</Status> }
 					</PriceWrap>
 					<Publisher>{ data.publisher }</Publisher>
+					<Isbn>ISBN: { data.isbn }</Isbn>
 					<Time color={ color.grey } value={ data.datetime } size="0.875em" format="YYYY-MM-DD" />
 				</ContentWrap>
 			</Information>
