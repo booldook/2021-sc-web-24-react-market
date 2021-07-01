@@ -28,7 +28,6 @@ const Web = () => {
 	const webList = useSelector(state => state.web.lists)
 
 	useEffect(() => {
-		console.log(query)
 		dispatch(getWebData(query, 50))
 		return () => {
 			dispatch(actQuery(''))
