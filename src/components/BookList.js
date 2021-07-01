@@ -7,6 +7,7 @@ import Title from './list/Title'
 import Time from './list/Time'
 import Image from './list/Image'
 import Content from './list/Content'
+import Price from './list/Price'
 
 const List = styled.div`
 	font-family: ${ font.noto };
@@ -54,12 +55,16 @@ const Titles = styled.a`
 `
 const Author = styled.div`
 	color: ${ color.info };
+	margin-bottom: .5em;
+	font-size: 1.125em;
 `
-const Price = styled.span`
-	font-size: 1em;
-	color: ${ color.darker };
+const PriceWrap = styled.div`
+	margin-bottom: .5em;
 `
-
+const Publisher = styled.div`
+	margin-bottom: .5em;
+	color: ${ color.dark };
+`
 const Information = styled.div`
 	display: flex;
 	margin-bottom: .75em;
@@ -67,13 +72,8 @@ const Information = styled.div`
 	line-height: 1.25em;
 `
 
-const price = (price, salePrice) => {
-	return (salePrice > 0) 
-		?	`<span style="text-decoration: line-through;">${ price }</span> | <span>${ salePrice }</span>`
-		: `<span>${ price }</span>`
-}
-
 const BookList = ({ data }) => {
+	
 	return (
 		<List>
 			<Titles href={ data.url } target="_blank">
@@ -85,8 +85,14 @@ const BookList = ({ data }) => {
 				</Imgs>
 				<ContentWrap>
 					<Author>{ data.authors.join(', ') }</Author>
-					<Price>{ parse(price(data.price, data.sale_price)) }</Price>
-					<Time color={ color.grey } value={ data.datetime } size="0.875em" />
+					<PriceWrap>
+						{ data.price > 0 ? <Price value={ data.price } color={ color.grey } del={ true } /> : '' } 
+						{ data.price > 0 ? ' | ' : '' }
+						<Price value={ data.sale_price } size="1.125em" color="#03f" />
+						&nbsp;[{ data.status }]
+					</PriceWrap>
+					<Publisher>{ data.publisher }</Publisher>
+					<Time color={ color.grey } value={ data.datetime } size="0.875em" format="YYYY-MM-DD" />
 				</ContentWrap>
 			</Information>
 			<Content color={ color.dark } hoverColor={ color.darker } value={ data.contents } />

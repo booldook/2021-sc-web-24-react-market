@@ -10,9 +10,9 @@ const My = styled.div`
 	font-weight: 300;
 `
 
-const Time = ({ value, size='1em', color='' }) => {
+const Time = ({ value, size='1em', color='', format=null }) => {
 	return (
-		<My color={ color } size={ size }>{ moment(value).format('YYYY-MM-DD HH:mm:ss') }</My>
+		<My color={ color } size={ size }>{ moment(value).format(format || 'YYYY-MM-DD HH:mm:ss') }</My>
 	);
 }
 
