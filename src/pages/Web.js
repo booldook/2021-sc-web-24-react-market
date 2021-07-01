@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getWebData } from '../store/reducers/webReducer'
+import { actQuery } from '../store/reducers/dataReducer'
 import { v4 as uuid } from 'uuid'
 
 import styled from 'styled-components'
@@ -29,6 +30,9 @@ const Web = () => {
 	useEffect(() => {
 		console.log(query)
 		dispatch(getWebData(query, 50))
+		return () => {
+			dispatch(actQuery(''))
+		}
 	}, [dispatch, query]);
 
 	return (

@@ -43,7 +43,7 @@ const Home = () => {
 	const bookList = useSelector(state => state.book.lists)
 
 	useEffect(() => {
-		dispatch(actQuery(''))
+		// dispatch(actQuery(''))
 	}, [dispatch]);
 
 	return (
