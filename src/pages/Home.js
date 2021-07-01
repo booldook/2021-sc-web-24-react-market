@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid'
 
 import styled from 'styled-components'
@@ -14,6 +14,7 @@ import ImgList from '../components/ImgList'
 import ClipList from '../components/ClipList'
 import BlogList from '../components/BlogList'
 import BookList from '../components/BookList'
+import { actQuery } from '../store/reducers/dataReducer';
 
 const ListWrapper = styled.div`
 	margin: 1em 0;
@@ -33,12 +34,17 @@ const BookWrapper = styled(ListWrapper)`
 
 
 const Home = () => {
+	const dispatch = useDispatch()
 	const query = useSelector(state => state.data.query)
 	const webList = useSelector(state => state.web.lists)
 	const imgList = useSelector(state => state.img.lists)
 	const clipList = useSelector(state => state.clip.lists)
 	const blogList = useSelector(state => state.blog.lists)
 	const bookList = useSelector(state => state.book.lists)
+
+	useEffect(() => {
+		dispatch(actQuery(''))
+	}, [dispatch]);
 
 	return (
 		<div>

@@ -8,8 +8,7 @@ const Logo = styled.h1`
 	text-align: center;
 	.img-wrap {
 		margin: auto;
-		max-width: 180px;
-		margin-bottom: 1em;
+		max-width: 250px;
 	}
 	.title-wrap {
 		font-size: 1.25em;
@@ -24,7 +23,6 @@ const TitleBar = () => {
 			<div className="img-wrap">
 				<img src="/logo.png" alt="logo" className="mw-100" />
 			</div>
-			<div className="title-wrap">여러분의 친구 체리 검색</div>
 		</Logo>
 	);
 }

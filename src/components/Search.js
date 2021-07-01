@@ -1,7 +1,7 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { color, media } from '../styled'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getWebData } from '../store/reducers/webReducer'
 import { getImgData } from '../store/reducers/imgReducer'
 import { getClipData } from '../store/reducers/clipReducer'
@@ -10,7 +10,7 @@ import { getBookData } from '../store/reducers/bookReducer'
 import { actQuery } from '../store/reducers/dataReducer'
 
 const Form = styled.div`
-	width: 80%;
+	flex-grow: 1;
 	max-width: 767px;
 	margin: auto;
 	button {
@@ -35,10 +35,15 @@ const Search = () => {
 	const dispatch = useDispatch()
 	const queryRef = useRef('')
 	const [query, setQuery] = useState('')
+	const oldQuery = useSelector(state => state.data.query)
 
 	const onInputChange = useCallback(e => {
 		setQuery(e.target.value)
 	}, [])
+
+	useEffect(() => {
+		setQuery(oldQuery)
+	}, [oldQuery]);
 
 	const onQuery = useCallback(e => {
 		e.preventDefault()
