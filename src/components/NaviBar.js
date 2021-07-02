@@ -24,9 +24,9 @@ const NaviLink = styled(Link)`
 const NaviBar = () => {
 	return (
 		<NaviWrap>
-			<NaviLink to='/web'>Website</NaviLink>
 			<NaviLink to='/img'>Image</NaviLink>
 			<NaviLink to='/clip'>Movie clip</NaviLink>
+			<NaviLink to='/web'>Website</NaviLink>
 			<NaviLink to='/blog'>Blog</NaviLink>
 			<NaviLink to='/book'>Book</NaviLink>
 		</NaviWrap>

@@ -31,7 +31,7 @@ const extraReducers = builder => builder
 	state.isEnd = payload.isEnd
 	state.pageCnt = payload.pageCnt
 	state.listCnt = payload.listCnt
-	state.lists = payload.lists
+	state.lists = [...state.lists, ...payload.lists]
 })
 .addCase(getImgAction.rejected, (state, { payload }) => {
 	state.isQuering = false
@@ -45,9 +45,9 @@ const extraReducers = builder => builder
 
 const ImgReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getImgData = (query, size = 10) => (dispatch, getState) => {
+const getImgData = (query, size = 80, page = 1) => (dispatch, getState) => {
 	// dispatch(actQuery(query))
-	dispatch(getImgAction({ query, size }))
+	dispatch(getImgAction({ query, size, page }))
 }
 
 export { getImgAction, getImgData }
