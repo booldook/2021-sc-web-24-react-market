@@ -44,7 +44,6 @@ const Name = styled.div`
 const ImgList = ({ data, handle }) => {
 
 	const onModalShow = useCallback(() => {
-		console.log(data.image_url)
 		handle(data.image_url)
 	}, [data.image_url, handle])
 
