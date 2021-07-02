@@ -35,17 +35,16 @@ const Img = () => {
 	const imgList = useSelector(state => state.img.lists)
 	const [page, setPage] = useState(1)
 
-	// const { ref, inView, entry } = useInView({});
-
 	useEffect(() => {
-		dispatch(getImgData(query, 50))
+		setPage(1)
+		dispatch(getImgData(query))
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
+		console.log('intersection', page)
 		if(inView) {
-			// console.log('Inview:', inView)
 			if(page < 50) {
-				dispatch(getImgData(query, 50, page + 1))
+				dispatch(getImgData(query, { page: page + 1 }))
 				setPage(page + 1)
 			}
 		}

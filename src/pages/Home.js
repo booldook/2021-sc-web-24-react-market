@@ -52,11 +52,11 @@ const Home = () => {
 
 	useEffect(() => {	// Query가 바뀌면 실행
 		if(query && query !== '') {
-			dispatch(getWebData(query, 10))
-			dispatch(getImgData(query, 14))
-			dispatch(getClipData(query, 10))
-			dispatch(getBlogData(query, 10))
-			dispatch(getBookData(query, 10))
+			dispatch(getWebData(query, { size:10 }))
+			dispatch(getImgData(query, { size:14 }))
+			dispatch(getClipData(query, { size:10 }))
+			dispatch(getBlogData(query, { size:10 }))
+			dispatch(getBookData(query, { size:10 }))
 		}
 	}, [dispatch, query]);
 	

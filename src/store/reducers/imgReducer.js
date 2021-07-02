@@ -16,10 +16,7 @@ const initialState = {
 }
 
 const reducers = {
-	actQuery(state, { payload }) {
-		state.query = payload
-	},
-	actReset: () => initialState
+	reset: () => initialState
 }
 
 const extraReducers = builder => builder
@@ -46,12 +43,13 @@ const extraReducers = builder => builder
 
 const ImgReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getImgData = (query, size = 80, page = 1) => (dispatch, getState) => {
-	// dispatch(actQuery(query))
+const getImgData = (query, options = {}) => (dispatch, getState) => {
+	let size = options.size || 80
+	let page = options.page || 1
 	dispatch(getImgAction({ query, size, page }))
 }
 
 export { getImgAction, getImgData }
-export const { actQuery, actReset } = ImgReducers.actions
+export const { reset } = ImgReducers.actions
 export default ImgReducers
 

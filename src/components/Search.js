@@ -2,12 +2,12 @@ import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { color, media } from '../styled'
 import { useDispatch, useSelector } from 'react-redux';
-import { actQuery } from '../store/reducers/dataReducer'
-import { actReset as resetImg } from '../store/reducers/imgReducer'
-import { actReset as resetClip } from '../store/reducers/imgReducer'
-import { actReset as resetWeb } from '../store/reducers/imgReducer'
-import { actReset as resetBlog } from '../store/reducers/imgReducer'
-import { actReset as resetBook } from '../store/reducers/imgReducer'
+import { actQuery, reset as resetQuery } from '../store/reducers/dataReducer'
+import { reset as resetImg } from '../store/reducers/imgReducer'
+import { reset as resetClip } from '../store/reducers/clipReducer'
+import { reset as resetWeb } from '../store/reducers/webReducer'
+import { reset as resetBlog } from '../store/reducers/blogReducer'
+import { reset as resetBook } from '../store/reducers/bookReducer'
 
 const Form = styled.div`
 	flex-grow: 1;
@@ -52,7 +52,10 @@ const Search = () => {
 		dispatch(resetWeb())
 		dispatch(resetBlog())
 		dispatch(resetBook())
-		dispatch(actQuery(query))
+		dispatch(resetQuery())
+		setTimeout(() => {
+			dispatch(actQuery(query))
+		}, 100)
 	}, [dispatch, query])
 
 	return (

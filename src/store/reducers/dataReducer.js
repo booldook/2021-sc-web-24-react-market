@@ -9,14 +9,13 @@ const initialState = {
 
 const reducers = {
 	actQuery(state, { payload }) {
-		// console.log(imgReducer.actions.reset())
-		imgReducer.actions.actReset()
 		state.query = payload
-	}
+	},
+	reset: () => initialState
 }
 
 const dataReducers = createSlice({ name, initialState, reducers })
 
-export const { actQuery } = dataReducers.actions
+export const { actQuery, reset } = dataReducers.actions
 export default dataReducers
 

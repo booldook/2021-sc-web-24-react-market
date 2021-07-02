@@ -16,9 +16,7 @@ const initialState = {
 }
 
 const reducers = {
-	actQuery(state, { payload }) {
-		state.query = payload
-	}
+	reset: () => initialState
 }
 
 const extraReducers = builder => builder
@@ -31,7 +29,7 @@ const extraReducers = builder => builder
 	state.isEnd = payload.isEnd
 	state.pageCnt = payload.pageCnt
 	state.listCnt = payload.listCnt
-	state.lists = payload.lists
+	state.lists = [...state.lists, ...payload.lists]
 })
 .addCase(getWebAction.rejected, (state, { payload }) => {
 	state.isQuering = false
@@ -45,12 +43,13 @@ const extraReducers = builder => builder
 
 const webReducers = createSlice({ name, initialState, reducers, extraReducers })
 
-const getWebData = (query, size = 10) => (dispatch, getState) => {
-	// dispatch(actQuery(query))
-	dispatch(getWebAction({ query, size }))
+const getWebData = (query, options = {}) => (dispatch, getState) => {
+	let size = options.size || 50
+	let page = options.page || 1
+	dispatch(getWebAction({ query, size, page }))
 }
 
 export { getWebAction, getWebData }
-export const { actQuery } = webReducers.actions
+export const { reset } = webReducers.actions
 export default webReducers
 

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getClipData } from '../store/reducers/clipReducer'
-import { actQuery } from '../store/reducers/dataReducer'
 import { v4 as uuid } from 'uuid'
+import { InView } from 'react-intersection-observer';
 
 import styled from 'styled-components'
 import { font, color } from '../styled'
@@ -13,6 +13,9 @@ import NaviBar from '../components/NaviBar'
 import TitleSearch from '../components/TitleSearch'
 import ClipList from '../components/ClipList'
 
+const Wrapper = styled.div`
+	padding-bottom: 5em;
+`
 const ListWrapper = styled.div`
 	margin: 1em 0;
 	padding-bottom: 1em;
@@ -30,13 +33,25 @@ const Clip = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
 	const clipList = useSelector(state => state.clip.lists)
+	const [page, setPage] = useState(1)
 
 	useEffect(() => {
-		dispatch(getClipData(query, 25))
+		setPage(1)
+		console.log(query)
+		dispatch(getClipData(query))
 	}, [dispatch, query]);
 
+	const onChangeView = useCallback((inView, entry) => {
+		if(inView) {
+			if(page < 50) {
+				dispatch(getClipData(query, { page: page + 1 }))
+				setPage(page + 1)
+			}
+		}
+	}, [dispatch, page, query])
+
 	return (
-		<div>
+		<Wrapper>
 			<Header>
 				<Logo />
 				<Search />
@@ -45,13 +60,16 @@ const Clip = () => {
 			{
 				query !== '' 
 				? <div>
-						<TitleSearch name="Video Clip" link="/clip" />
+						<TitleSearch name="Video clip" link="/clip" />
 						<ClipWrapper>
 							{ clipList.map(v => <ClipList data={ v } key={ uuid() }/>) }
 						</ClipWrapper>
 					</div> : ''
 			}
-		</div>
+			<InView onChange={onChangeView}>
+
+			</InView>
+		</Wrapper>
 	)
 }
 
