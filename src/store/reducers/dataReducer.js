@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import imgReducer from './imgReducer'
 
 const name = 'data'
 
@@ -8,6 +9,8 @@ const initialState = {
 
 const reducers = {
 	actQuery(state, { payload }) {
+		// console.log(imgReducer.actions.reset())
+		imgReducer.actions.actReset()
 		state.query = payload
 	}
 }

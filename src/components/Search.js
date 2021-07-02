@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import { color, media } from '../styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { actQuery } from '../store/reducers/dataReducer'
+import { actReset as resetImg } from '../store/reducers/imgReducer'
+import { actReset as resetClip } from '../store/reducers/imgReducer'
+import { actReset as resetWeb } from '../store/reducers/imgReducer'
+import { actReset as resetBlog } from '../store/reducers/imgReducer'
+import { actReset as resetBook } from '../store/reducers/imgReducer'
 
 const Form = styled.div`
 	flex-grow: 1;
@@ -42,6 +47,11 @@ const Search = () => {
 
 	const onQuery = useCallback(e => {
 		e.preventDefault()
+		dispatch(resetImg())
+		dispatch(resetClip())
+		dispatch(resetWeb())
+		dispatch(resetBlog())
+		dispatch(resetBook())
 		dispatch(actQuery(query))
 	}, [dispatch, query])
 

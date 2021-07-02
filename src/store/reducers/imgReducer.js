@@ -18,7 +18,8 @@ const initialState = {
 const reducers = {
 	actQuery(state, { payload }) {
 		state.query = payload
-	}
+	},
+	actReset: () => initialState
 }
 
 const extraReducers = builder => builder
@@ -51,6 +52,6 @@ const getImgData = (query, size = 80, page = 1) => (dispatch, getState) => {
 }
 
 export { getImgAction, getImgData }
-export const { actQuery } = ImgReducers.actions
+export const { actQuery, actReset } = ImgReducers.actions
 export default ImgReducers
 
