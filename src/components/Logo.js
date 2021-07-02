@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const Logo = styled.h1`
 	flex-grow: 0;
-	max-width: 200px;
+	max-width: 250px;
+	padding-right: 1em;
 `
 
 const TitleBar = () => {

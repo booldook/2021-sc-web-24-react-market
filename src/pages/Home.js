@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid'
-
 import styled from 'styled-components'
 import { font, color } from '../styled'
+
+import { actQuery } from '../store/reducers/dataReducer'
+import { getWebData } from '../store/reducers/webReducer'
+import { getImgData } from '../store/reducers/imgReducer'
+import { getClipData } from '../store/reducers/clipReducer'
+import { getBlogData } from '../store/reducers/blogReducer'
+import { getBookData } from '../store/reducers/bookReducer'
 
 import TitleBar from '../components/TitleBar'
 import Search from '../components/Search'
@@ -32,12 +38,24 @@ const BookWrapper = styled(ListWrapper)`
 `
 
 const Home = () => {
+	const dispatch = useDispatch()
 	const query = useSelector(state => state.data.query)
 	const webList = useSelector(state => state.web.lists)
 	const imgList = useSelector(state => state.img.lists)
 	const clipList = useSelector(state => state.clip.lists)
 	const blogList = useSelector(state => state.blog.lists)
 	const bookList = useSelector(state => state.book.lists)
+
+	useEffect(() => {
+		if(query && query !== '') {
+			dispatch(getWebData(query, 10))
+			dispatch(getImgData(query, 14))
+			dispatch(getClipData(query, 10))
+			dispatch(getBlogData(query, 10))
+			dispatch(getBookData(query, 10))
+		}
+	}, [dispatch, query]);
+	
 
 	return (
 		<div>

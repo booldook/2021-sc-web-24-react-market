@@ -2,11 +2,6 @@ import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { color, media } from '../styled'
 import { useDispatch, useSelector } from 'react-redux';
-import { getWebData } from '../store/reducers/webReducer'
-import { getImgData } from '../store/reducers/imgReducer'
-import { getClipData } from '../store/reducers/clipReducer'
-import { getBlogData } from '../store/reducers/blogReducer'
-import { getBookData } from '../store/reducers/bookReducer'
 import { actQuery } from '../store/reducers/dataReducer'
 
 const Form = styled.div`
@@ -47,11 +42,6 @@ const Search = () => {
 
 	const onQuery = useCallback(e => {
 		e.preventDefault()
-		dispatch(getWebData(query, 10))
-		dispatch(getImgData(query, 14))
-		dispatch(getClipData(query, 10))
-		dispatch(getBlogData(query, 10))
-		dispatch(getBookData(query, 10))
 		dispatch(actQuery(query))
 	}, [dispatch, query])
 
