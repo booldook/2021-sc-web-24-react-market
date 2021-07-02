@@ -49,6 +49,7 @@ const Home = () => {
 
 	const [modal, setModal] = useState(false)
 	const [src, setSrc] = useState()
+	const [thumb, setThumb] = useState()
 
 	useEffect(() => { // 시작할 때 한번만 실행
 		dispatch(actQuery(''))
@@ -68,8 +69,9 @@ const Home = () => {
 		setModal(v)
 	}, [])
 
-	const handleModalOpen = useCallback(src => {
+	const handleModalOpen = useCallback((src, thumb) => {
 		setSrc(src)
+		setThumb(thumb)
 		setModal(true)
 	}, [])
 
@@ -104,7 +106,7 @@ const Home = () => {
 					</div> 
 				: ''
 			}
-			{ modal ? <Modal src={ src } handle={ handleModalClose } /> : '' }
+			{ modal ? <Modal src={ src } thumb={ thumb } handle={ handleModalClose } /> : '' }
 		</div>
 	)
 }

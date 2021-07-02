@@ -28,14 +28,9 @@ const Image = ({ thumb, src=null, isImg=false }) => {
 		else if(src) window.open(src)
 	}, [isImg, src])
 
-	const onImgError = useCallback(e => {
-		console.log('error')
-		e.target.src = thumb
-	}, [thumb])
-
 	return (
 		<My>
-			<img src={ thumb } alt="" className="w-100" onClick={ onClick } onError={ onImgError } />
+			<img src={ thumb } alt="" className="w-100" onClick={ onClick } />
 		</My>
 	);
 }

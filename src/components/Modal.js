@@ -34,16 +34,20 @@ const CloseButton = styled.div`
 	cursor: pointer;
 `
 
-const Modal = ({ src, handle }) => {
+const Modal = ({ src, thumb, handle }) => {
 
 	const onClose = useCallback(e => {
 		handle(false)
 	}, [handle])
 
+	const onImgError = useCallback(e => {
+		e.target.src = thumb
+	}, [thumb])
+
 	return (
 		<My>
 			<Body>
-				<img src={ src } className="mw-100 mh-100" alt={ src } />
+				<img src={ src } className="mw-100 mh-100" alt={ src } onError={ onImgError } />
 			</Body>
 			<CloseButton onClick={ onClose }>
 				<i className="fa fa-times"></i>

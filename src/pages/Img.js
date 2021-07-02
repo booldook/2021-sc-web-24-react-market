@@ -36,7 +36,8 @@ const Img = () => {
 	const imgList = useSelector(state => state.img.lists)
 	const [page, setPage] = useState(1)
 	const [modal, setModal] = useState(false)
-	const [src, setSrc] = useState()
+	const [src, setSrc] = useState('')
+	const [thumb, setThumb] = useState('')
 
 	useEffect(() => {
 		setPage(1)
@@ -57,8 +58,9 @@ const Img = () => {
 		setModal(v)
 	}, [])
 
-	const handleModalOpen = useCallback(src => {
+	const handleModalOpen = useCallback((src, thumb) => {
 		setSrc(src)
+		setThumb(thumb)
 		setModal(true)
 	}, [])
 
@@ -81,7 +83,7 @@ const Img = () => {
 			<InView onChange={onChangeView}>
 
 			</InView>
-			{ modal ? <Modal src={ src } handle={ handleModalClose } /> : '' }
+			{ modal ? <Modal src={ src } thumb={ thumb } handle={ handleModalClose } /> : '' }
 		</Wrapper>
 	)
 }
