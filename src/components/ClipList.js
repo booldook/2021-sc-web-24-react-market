@@ -19,12 +19,12 @@ const Imgs = styled.div`
 	border: 1px solid ${ color.primary };
 	flex-shrink: 0;
 `
-const Titles = styled.a`
+const Titles = styled.span`
 	margin-bottom: .75em;
 	flex-grow: 1;
 	padding-left: 1em;
 	color: ${ color.dark };
-	font-size: 1.25em;
+	font-size: 1em;
 	@media ${ media.sm } {
 		font-size: 1em;
 	}
@@ -46,14 +46,14 @@ const Duration = styled.span`
 
 const zeroPlus = n => n < 10 ? '0'+n : n
 
-const ImgList = ({ data }) => {
+const ClipList = ({ data }) => {
 	return (
 		<List>
 			<Imgs>
 				<Image src={ data.url } thumb={ data.thumbnail } />
 			</Imgs>
-			<Titles href={ data.doc_url } target="_blank">
-				<Title value={ data.title } color={ color.primary } />
+			<Titles>
+				<Title value={ data.title } color={ color.primary } size="1.25em" />
 				<Author>{ data.author }</Author>
 				<Bar>|</Bar>
 				<Duration>{ zeroPlus(Math.floor(data.play_time/60)) }:{ zeroPlus(data.play_time%60) }</Duration>
@@ -64,4 +64,4 @@ const ImgList = ({ data }) => {
 	);
 }
 
-export default ImgList;
+export default React.memo(ClipList)

@@ -15,4 +15,4 @@ const Title = ({ value, size='1em', color='' }) => {
 	);
 }
 
-export default Title;
+export default React.memo(Title)

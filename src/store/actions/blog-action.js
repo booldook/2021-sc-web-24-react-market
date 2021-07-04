@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getSearchApi } from '../apis'
 
-const getBlogAction = createAsyncThunk('clip/getBlogAction', async (payload, thunk) => {
+const getBlogAction = createAsyncThunk('blog/getBlogAction', async (payload, thunk) => {
 	try {
 		return await getSearchApi(payload, 'BLOG_URL')
 	}
@@ -9,5 +9,7 @@ const getBlogAction = createAsyncThunk('clip/getBlogAction', async (payload, thu
 		throw err
 	}
 })
+
+
 
 export { getBlogAction }

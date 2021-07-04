@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { color, font, media, flex } from '../styled'
 
 const NaviWrap = styled.div`
-	${ flex }
+	${ flex };
 	justify-content: center;
 	padding: 1em 0;
 	color: ${ color.warning };
@@ -33,4 +33,4 @@ const NaviBar = () => {
 	);
 }
 
-export default NaviBar;
+export default React.memo(NaviBar)

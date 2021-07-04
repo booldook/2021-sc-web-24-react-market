@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getClipData } from '../store/reducers/clipReducer'
+import { getClipData, reset, actIsAdd } from '../store/reducers/clipReducer'
 import { v4 as uuid } from 'uuid'
 import { InView } from 'react-intersection-observer';
 
 import styled from 'styled-components'
-import { font, color } from '../styled'
 
 import Logo from '../components/Logo'
 import Search from '../components/Search'
@@ -34,16 +33,22 @@ const Clip = () => {
 	const query = useSelector(state => state.data.query)
 	const clipList = useSelector(state => state.clip.lists)
 	const [page, setPage] = useState(1)
-
+	
 	useEffect(() => {
+		dispatch(reset())
 		setPage(1)
-		console.log(query)
+	}, [dispatch])
+	
+	useEffect(() => {
+		dispatch(reset())
+		setPage(1)
 		dispatch(getClipData(query))
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
 		if(inView) {
-			if(page < 50) {
+			if(inView && page < 50) {
+				dispatch(actIsAdd(true))
 				dispatch(getClipData(query, { page: page + 1 }))
 				setPage(page + 1)
 			}
@@ -66,11 +71,9 @@ const Clip = () => {
 						</ClipWrapper>
 					</div> : ''
 			}
-			<InView onChange={onChangeView}>
-
-			</InView>
+			<InView onChange={ onChangeView }>&nbsp;</InView>
 		</Wrapper>
 	)
 }
 
-export default Clip
+export default React.memo(Clip)

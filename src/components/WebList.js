@@ -33,4 +33,4 @@ const WebList = ({ data }) => {
 	);
 }
 
-export default WebList;
+export default React.memo(WebList)

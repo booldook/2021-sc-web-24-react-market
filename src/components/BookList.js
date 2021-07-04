@@ -111,4 +111,4 @@ const BookList = ({ data }) => {
 	);
 }
 
-export default BookList;
+export default React.memo(BookList)

@@ -12,11 +12,15 @@ const initialState = {
 	isEnd: false,
 	pageCnt: 0,
 	listCnt: 0,
-	lists: []
+	lists: [],
+	isAdd: false
 }
 
 const reducers = {
-	reset: () => initialState
+	reset: () => initialState,
+	actIsAdd: (state, { payload }) => {
+		state.isAdd = payload
+	}
 }
 
 const extraReducers = builder => builder
@@ -29,7 +33,10 @@ const extraReducers = builder => builder
 	state.isEnd = payload.isEnd
 	state.pageCnt = payload.pageCnt
 	state.listCnt = payload.listCnt
-	state.lists = [...state.lists, ...payload.lists]
+	if(state.isAdd)
+		state.lists = [...state.lists, ...payload.lists]
+	else
+		state.lists = payload.lists
 })
 .addCase(getImgAction.rejected, (state, { payload }) => {
 	state.isQuering = false
@@ -39,17 +46,19 @@ const extraReducers = builder => builder
 	state.pageCnt = 0
 	state.listCnt = 0
 	state.lists = []
+	state.isAdd = false
 })
+
 
 const ImgReducers = createSlice({ name, initialState, reducers, extraReducers })
 
 const getImgData = (query, options = {}) => (dispatch, getState) => {
 	let size = options.size || 80
 	let page = options.page || 1
-	dispatch(getImgAction({ query, size, page }))
+	if(query) dispatch(getImgAction({ query, size, page }))
 }
 
 export { getImgAction, getImgData }
-export const { reset } = ImgReducers.actions
+export const { reset, actIsAdd } = ImgReducers.actions
 export default ImgReducers
 

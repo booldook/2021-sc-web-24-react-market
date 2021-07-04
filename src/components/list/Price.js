@@ -17,4 +17,4 @@ const Price = ({ value, size='1em', color='', del=false }) => {
 	);
 }
 
-export default Price;
+export default React.memo(Price)

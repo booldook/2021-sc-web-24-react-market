@@ -16,4 +16,4 @@ const Time = ({ value, size='1em', color='', format=null }) => {
 	);
 }
 
-export default Time;
+export default React.memo(Time)

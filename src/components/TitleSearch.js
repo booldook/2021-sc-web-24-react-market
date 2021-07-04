@@ -40,4 +40,4 @@ const TitleSearch = ({ name, link }) => {
 	);
 }
 
-export default TitleSearch;
+export default React.memo(TitleSearch)

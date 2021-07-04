@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components'
 import { color, media, font } from '../styled'
 
-import Title from './list/Title'
 import Time from './list/Time'
 import Image from './list/Image'
 
@@ -62,4 +61,4 @@ const ImgList = ({ data, handle }) => {
 	);
 }
 
-export default ImgList;
+export default React.memo(ImgList)

@@ -50,10 +50,10 @@ const Modal = ({ src, thumb, handle }) => {
 				<img src={ src } className="mw-100 mh-100" alt={ src } onError={ onImgError } />
 			</Body>
 			<CloseButton onClick={ onClose }>
-				<i className="fa fa-times"></i>
+				<i className="fa fa-times" />
 			</CloseButton>
 		</My>
 	);
 }
 
-export default Modal;
+export default React.memo(Modal)

@@ -47,15 +47,7 @@ const Search = () => {
 
 	const onQuery = useCallback(e => {
 		e.preventDefault()
-		dispatch(resetImg())
-		dispatch(resetClip())
-		dispatch(resetWeb())
-		dispatch(resetBlog())
-		dispatch(resetBook())
-		dispatch(resetQuery())
-		setTimeout(() => {
-			dispatch(actQuery(query))
-		}, 100)
+		dispatch(actQuery(query))
 	}, [dispatch, query])
 
 	return (
@@ -70,4 +62,4 @@ const Search = () => {
 	);
 }
 
-export default Search;
+export default React.memo(Search)

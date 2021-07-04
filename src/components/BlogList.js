@@ -74,4 +74,4 @@ const BlogList = ({ data }) => {
 	);
 }
 
-export default BlogList;
+export default React.memo(BlogList)

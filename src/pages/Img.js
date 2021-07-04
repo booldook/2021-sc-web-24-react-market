@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getImgData } from '../store/reducers/imgReducer'
+import { getImgData, reset, actIsAdd } from '../store/reducers/imgReducer'
 import { v4 as uuid } from 'uuid'
 import { InView } from 'react-intersection-observer';
 
 import styled from 'styled-components'
-import { font, color } from '../styled'
 
 import Modal from '../components/Modal'
 import Logo from '../components/Logo'
@@ -38,19 +37,25 @@ const Img = () => {
 	const [modal, setModal] = useState(false)
 	const [src, setSrc] = useState('')
 	const [thumb, setThumb] = useState('')
-
+	
 	useEffect(() => {
+		setPage(1)
+		return () => {
+			dispatch(reset())
+		}
+	}, [dispatch])
+	
+	useEffect(() => {
+		dispatch(reset())
 		setPage(1)
 		dispatch(getImgData(query))
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		console.log('intersection', page)
-		if(inView) {
-			if(page < 50) {
-				dispatch(getImgData(query, { page: page + 1 }))
-				setPage(page + 1)
-			}
+		if(inView && page < 50) {
+			dispatch(actIsAdd(true))
+			dispatch(getImgData(query, { page: page + 1 }))
+			setPage(page + 1)
 		}
 	}, [dispatch, page, query])
 
@@ -80,12 +85,10 @@ const Img = () => {
 						</ImgWrapper>
 					</div> : ''
 			}
-			<InView onChange={onChangeView}>
-
-			</InView>
+			<InView onChange={onChangeView}>&nbsp;</InView>
 			{ modal ? <Modal src={ src } thumb={ thumb } handle={ handleModalClose } /> : '' }
 		</Wrapper>
 	)
 }
 
-export default Img
+export default React.memo(Img)

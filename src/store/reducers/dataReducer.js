@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const reducers = {
-	actQuery(state, { payload }) {
+	actQuery: (state, { payload }) => {
 		state.query = payload
 	},
 	reset: () => initialState

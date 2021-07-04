@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getSearchApi } from '../apis'
 
-const getBookAction = createAsyncThunk('clip/getBookAction', async (payload, thunk) => {
+const getBookAction = createAsyncThunk('book/getBookAction', async (payload, thunk) => {
 	try {
 		return await getSearchApi(payload, 'BOOK_URL')
 	}

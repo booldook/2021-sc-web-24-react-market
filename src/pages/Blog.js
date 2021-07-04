@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBlogData } from '../store/reducers/blogReducer'
+import { getBlogData, reset, actIsAdd } from '../store/reducers/blogReducer'
 import { v4 as uuid } from 'uuid'
 import { InView } from 'react-intersection-observer';
 
 import styled from 'styled-components'
-import { font, color } from '../styled'
 
 import Logo from '../components/Logo'
 import Search from '../components/Search'
@@ -34,18 +33,26 @@ const Blog = () => {
 	const query = useSelector(state => state.data.query)
 	const blogList = useSelector(state => state.blog.lists)
 	const [page, setPage] = useState(1)
-
+	
 	useEffect(() => {
+		dispatch(reset())
+		setPage(1)
+		return () => {
+			dispatch(reset())
+		}
+	}, [dispatch])
+	
+	useEffect(() => {
+		dispatch(reset())
 		setPage(1)
 		dispatch(getBlogData(query))
 	}, [dispatch, query]);
-
+	
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView) {
-			if(page < 50) {
-				dispatch(getBlogData(query, { page: page + 1 }))
-				setPage(page + 1)
-			}
+		if(inView && page < 50) {
+			dispatch(actIsAdd(true))
+			dispatch(getBlogData(query, { page: page + 1 }))
+			setPage(page + 1)
 		}
 	}, [dispatch, page, query])
 
@@ -65,11 +72,9 @@ const Blog = () => {
 						</BlogWrapper>
 					</div> : ''
 			}
-			<InView onChange={onChangeView}>
-
-			</InView>
+			<InView onChange={ onChangeView }>&nbsp;</InView>
 		</Wrapper>
 	)
 }
 
-export default Blog
+export default React.memo(Blog)

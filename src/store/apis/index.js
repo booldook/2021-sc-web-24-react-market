@@ -40,7 +40,6 @@ const getSearchApi = async (payload, searchEngine) => {
 	try {
 		if(payload && payload !== '') {
 			const { data } = await axios(init[searchEngine], init.genConfig(payload))
-			console.log(data)
 			return {
 				pageCnt: data.meta.pageable_count,
 				listCnt: data.meta.total_count,
