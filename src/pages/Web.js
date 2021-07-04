@@ -37,6 +37,9 @@ const Web = () => {
 	useEffect(() => {
 		dispatch(reset())
 		setPage(1)
+		return () => {
+			dispatch(reset())
+		}
 	}, [dispatch])
 	
 	useEffect(() => {

@@ -39,6 +39,7 @@ const Img = () => {
 	const [thumb, setThumb] = useState('')
 	
 	useEffect(() => {
+		dispatch(reset())
 		setPage(1)
 		return () => {
 			dispatch(reset())
