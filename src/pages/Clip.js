@@ -51,7 +51,7 @@ const Clip = () => {
 
 	const onChangeView = useCallback((inView, entry) => {
 		if(inView) {
-			if(inView && page < 50 && bookList.length < listCnt) {
+			if(inView && page < 50 && clipList.length < listCnt) {
 				dispatch(actIsAdd(true))
 				dispatch(getClipData(query, { page: page + 1 }))
 				setPage(page + 1)

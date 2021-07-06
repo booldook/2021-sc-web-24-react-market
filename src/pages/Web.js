@@ -50,7 +50,7 @@ const Web = () => {
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50 && bookList.length < listCnt) {
+		if(inView && page < 50 && webList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getWebData(query, { page: page + 1 }))
 			setPage(page + 1)

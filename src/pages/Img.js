@@ -54,7 +54,7 @@ const Img = () => {
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50 && bookList.length < listCnt) {
+		if(inView && page < 50 && imgList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getImgData(query, { page: page + 1 }))
 			setPage(page + 1)

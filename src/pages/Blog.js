@@ -50,7 +50,7 @@ const Blog = () => {
 	}, [dispatch, query]);
 	
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50 && bookList.length < listCnt) {
+		if(inView && page < 50 && blogList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getBlogData(query, { page: page + 1 }))
 			setPage(page + 1)
