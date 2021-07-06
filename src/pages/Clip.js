@@ -31,6 +31,7 @@ const Header = styled.header`
 const Clip = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
+	const listCnt = useSelector(state => state.book.listCnt)
 	const clipList = useSelector(state => state.clip.lists)
 	const [page, setPage] = useState(1)
 	
@@ -50,7 +51,7 @@ const Clip = () => {
 
 	const onChangeView = useCallback((inView, entry) => {
 		if(inView) {
-			if(inView && page < 50) {
+			if(inView && page < 50 && bookList.length < listCnt) {
 				dispatch(actIsAdd(true))
 				dispatch(getClipData(query, { page: page + 1 }))
 				setPage(page + 1)

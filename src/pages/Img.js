@@ -32,6 +32,7 @@ const Header = styled.header`
 const Img = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
+	const listCnt = useSelector(state => state.book.listCnt)
 	const imgList = useSelector(state => state.img.lists)
 	const [page, setPage] = useState(1)
 	const [modal, setModal] = useState(false)
@@ -53,7 +54,7 @@ const Img = () => {
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50) {
+		if(inView && page < 50 && bookList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getImgData(query, { page: page + 1 }))
 			setPage(page + 1)

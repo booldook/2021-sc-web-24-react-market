@@ -31,6 +31,7 @@ const Header = styled.header`
 const Web = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
+	const listCnt = useSelector(state => state.book.listCnt)
 	const webList = useSelector(state => state.web.lists)
 	const [page, setPage] = useState(1)
 	
@@ -49,7 +50,7 @@ const Web = () => {
 	}, [dispatch, query]);
 
 	const onChangeView = useCallback((inView, entry) => {
-		if(inView && page < 50) {
+		if(inView && page < 50 && bookList.length < listCnt) {
 			dispatch(actIsAdd(true))
 			dispatch(getWebData(query, { page: page + 1 }))
 			setPage(page + 1)
