@@ -31,7 +31,7 @@ const Header = styled.header`
 const Clip = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
-	const listCnt = useSelector(state => state.book.listCnt)
+	const listCnt = useSelector(state => state.clip.listCnt)
 	const clipList = useSelector(state => state.clip.lists)
 	const [page, setPage] = useState(1)
 	
@@ -57,7 +57,7 @@ const Clip = () => {
 				setPage(page + 1)
 			}
 		}
-	}, [dispatch, page, query])
+	}, [dispatch, page, query, listCnt, clipList])
 
 	return (
 		<Wrapper>

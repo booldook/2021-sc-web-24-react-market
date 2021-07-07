@@ -56,7 +56,7 @@ const Book = () => {
 			dispatch(getBookData(query, { page: page + 1 }))
 			setPage(page + 1)
 		}
-	}, [dispatch, page, query])
+	}, [dispatch, page, query, listCnt, bookList])
 
 	return (
 		<Wrapper>

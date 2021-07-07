@@ -31,7 +31,7 @@ const Header = styled.header`
 const Web = () => {
 	const dispatch = useDispatch();
 	const query = useSelector(state => state.data.query)
-	const listCnt = useSelector(state => state.book.listCnt)
+	const listCnt = useSelector(state => state.web.listCnt)
 	const webList = useSelector(state => state.web.lists)
 	const [page, setPage] = useState(1)
 	
@@ -55,7 +55,7 @@ const Web = () => {
 			dispatch(getWebData(query, { page: page + 1 }))
 			setPage(page + 1)
 		}
-	}, [dispatch, page, query])
+	}, [dispatch, page, query, listCnt, webList])
 
 	return (
 		<Wrapper>
